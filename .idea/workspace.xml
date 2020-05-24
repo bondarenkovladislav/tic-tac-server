@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b793c6e3-9691-4b2c-b086-9bdfe5195c69" name="Default Changelist" comment="" />
+    <list default="true" id="b793c6e3-9691-4b2c-b086-9bdfe5195c69" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +34,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1590335818295</updated>
-      <workItem from="1590335822923" duration="1657000" />
+      <workItem from="1590335822923" duration="1968000" />
     </task>
     <servers />
   </component>
@@ -40,6 +42,10 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="100" y="100" width="1720" height="1000" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1590340517417">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="100" y="100" width="1720" height="1000" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-332.-1080.2560.1080/0.0.1920.1200@0.0.1920.1200" timestamp="1590340517417" />
     <state x="659" y="339" width="602" height="522" key="find.popup" timestamp="1590335927062">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
