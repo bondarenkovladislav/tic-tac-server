@@ -16,4 +16,5 @@ mock
 # Production Server
 # ----------------------
 gevent
+gevent-websocket
 gunicorn
