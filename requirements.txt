@@ -17,3 +17,4 @@ mock
 # ----------------------
 gevent
 gunicorn
+gevent-websocket
