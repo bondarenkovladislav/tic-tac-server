@@ -4,6 +4,7 @@
 flask
 flask-cors
 Flask-SocketIO
+socketio
 
 
 # ----------------------
