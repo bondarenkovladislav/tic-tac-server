@@ -18,3 +18,5 @@ mock
 gevent
 gevent-websocket
 gunicorn
+
+python-dotenv
