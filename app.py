@@ -9,9 +9,11 @@ This file creates your application.
 import os
 from flask import Flask, render_template, request, redirect, url_for
 from flask_cors import CORS
+from flask_socketio import SocketIO, send, emit
 
 app = Flask(__name__)
 CORS(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configured')
 
@@ -36,22 +38,22 @@ def about():
 # The functions below should be applicable to all Flask apps.
 ###
 
-@app.route('/<file_name>.txt')
-def send_text_file(file_name):
-    """Send your static text file."""
-    file_dot_text = file_name + '.txt'
-    return app.send_static_file(file_dot_text)
-
-
-@app.after_request
-def add_header(response):
-    """
-    Add headers to both force latest IE rendering engine or Chrome Frame,
-    and also to cache the rendered page for 10 minutes.
-    """
-    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-    response.headers['Cache-Control'] = 'public, max-age=600'
-    return response
+# @app.route('/<file_name>.txt')
+# def send_text_file(file_name):
+#     """Send your static text file."""
+#     file_dot_text = file_name + '.txt'
+#     return app.send_static_file(file_dot_text)
+#
+#
+# @app.after_request
+# def add_header(response):
+#     """
+#     Add headers to both force latest IE rendering engine or Chrome Frame,
+#     and also to cache the rendered page for 10 minutes.
+#     """
+#     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+#     response.headers['Cache-Control'] = 'public, max-age=600'
+#     return response
 
 
 @app.errorhandler(404)
@@ -60,5 +62,18 @@ def page_not_found(error):
     return render_template('404.html'), 404
 
 
+@socketio.on('message')
+def handle_message(data):
+    print('received message: ', data)
+
+@socketio.on('json')
+def handle_json(json):
+    print('received json: ' + str(json))
+    send('Recieved')
+
+@socketio.on('connect')
+def test_connect():
+    send('Connected from server')
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    socketio.run(app, cors_allowed_origins="*")
