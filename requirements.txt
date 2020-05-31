@@ -19,5 +19,4 @@ gevent
 gevent-websocket
 gunicorn
 
-python-dotenv
 eventlet
