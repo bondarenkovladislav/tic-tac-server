@@ -1,0 +1,20 @@
+# ----------------------
+# Flask
+# ----------------------
+flask
+flask-cors
+Flask-SocketIO
+
+
+# ----------------------
+# Testing
+# ----------------------
+mock
+
+
+# ----------------------
+# Production Server
+# ----------------------
+gevent
+gunicorn
+gevent-websocket

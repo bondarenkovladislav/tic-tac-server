@@ -7,13 +7,14 @@ This file creates your application.
 """
 
 import os
+import gevent
 from flask import Flask, render_template, request, redirect, url_for
 from flask_cors import CORS
-from flask_socketio import SocketIO, send, emit
+from flask_sockets import Sockets
 
 app = Flask(__name__)
 CORS(app)
-socketio = SocketIO(app, cors_allowed_origins="*")
+sockets = Sockets(app)
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configured')
 
@@ -61,19 +62,21 @@ def page_not_found(error):
     """Custom 404 page."""
     return render_template('404.html'), 404
 
+@sockets.route('/submit')
+def inbox(ws):
+    """Receives incoming chat messages, inserts them into Redis."""
+    while not ws.closed:
+        # Sleep to prevent *constant* context-switches.
+        gevent.sleep(0.1)
+        message = ws.receive()
 
-@socketio.on('message')
-def handle_message(data):
-    print('received message: ', data)
+@sockets.route('/receive')
+def outbox(ws):
+    while not ws.closed:
+        # Context switch while `ChatBackend.start` is running in the background.
+        gevent.sleep(0.1)
+    print('recieve')
 
-@socketio.on('json')
-def handle_json(json):
-    print('received json: ' + str(json))
-    send('Recieved')
 
-@socketio.on('connect')
-def test_connect():
-    send('Connected from server')
-
-if __name__ == '__main__':
-    socketio.run(app, cors_allowed_origins="*")
+# if __name__ == '__main__':
+#     socketio.run(app, cors_allowed_origins="*")
