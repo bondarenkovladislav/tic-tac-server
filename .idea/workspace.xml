@@ -24,7 +24,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b793c6e3-9691-4b2c-b086-9bdfe5195c69" name="Default Changelist" comment="" />
+    <list default="true" id="b793c6e3-9691-4b2c-b086-9bdfe5195c69" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/mongo_connect.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,11 +86,29 @@
       <updated>1590335818295</updated>
       <workItem from="1590335822923" duration="2634000" />
       <workItem from="1590927412735" duration="9586000" />
+      <workItem from="1591017612003" duration="5385000" />
+      <workItem from="1591119188921" duration="2904000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Revert &quot;proc&quot;&#10;&#10;This reverts commit 65ebb215" />
+    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;proc&quot;&#10;&#10;This reverts commit 65ebb215" />
   </component>
   <component name="WindowStateProjectService">
     <state x="520" y="89" key="CommitChangelistDialog2" timestamp="1591017103789">
@@ -101,13 +124,18 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="688" y="226" key="RollbackChangesDialog/-332.-1080.2560.1080/0.0.1920.1200@0.0.1920.1200" timestamp="1591017139515" />
-    <state x="100" y="100" width="1720" height="1000" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1591017338426">
+    <state x="200" y="171" width="1720" height="1000" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1591017586089">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state x="100" y="100" width="1720" height="1000" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-332.-1080.2560.1080/0.0.1920.1200@0.0.1920.1200" timestamp="1591017338426" />
+    <state x="200" y="171" width="1720" height="1000" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-332.-1057.2560.1057/0.0.1920.1200@0.0.1920.1200" timestamp="1591017586089" />
+    <state x="592" y="171" width="1720" height="1000" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-332.-1080.2560.1080/0.0.1920.1200@0.0.1920.1200" timestamp="1591017402779" />
     <state x="659" y="339" width="602" height="522" key="find.popup" timestamp="1590335927062">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="659" y="339" width="602" height="522" key="find.popup/-332.-1080.2560.1080/0.0.1920.1200@0.0.1920.1200" timestamp="1590335927062" />
+    <state x="625" y="271" width="670" height="676" key="search.everywhere.popup" timestamp="1591121037515">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="625" y="271" width="670" height="676" key="search.everywhere.popup/-332.-1080.2560.1080/0.0.1920.1200@0.0.1920.1200" timestamp="1591121037515" />
   </component>
 </project>

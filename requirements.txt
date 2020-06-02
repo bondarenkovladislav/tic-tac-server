@@ -18,3 +18,11 @@ mock
 gevent
 gunicorn
 gevent-websocket
+
+
+# ----------------------
+# Mongo DB
+# ----------------------
+pymongo
+Flask-PyMongo
+jsonfy
