@@ -23,7 +23,6 @@ gevent-websocket
 # ----------------------
 # Mongo DB
 # ----------------------
-pymongo
+pymongo[tls,srv]
 Flask-PyMongo
 jsonfy
-pymongo[srv]
