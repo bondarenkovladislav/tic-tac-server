@@ -26,3 +26,4 @@ gevent-websocket
 pymongo
 Flask-PyMongo
 jsonfy
+pymongo[srv]
