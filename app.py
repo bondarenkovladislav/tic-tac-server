@@ -15,6 +15,7 @@ from flask import jsonify
 from flask import request
 from pymongo import MongoClient
 from flask import request
+import gameService
 
 import json
 from bson import ObjectId
@@ -107,7 +108,8 @@ def handle_message(data):
 @socketio.on('json')
 def handle_json(json):
     print('received json: ' + str(json))
-    send('Recieved')
+    result = gameService.checkStepAvailable(json)
+    send(result)
 
 @socketio.on('connect')
 def test_connect():
