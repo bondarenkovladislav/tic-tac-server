@@ -16,9 +16,11 @@ from flask import request
 from pymongo import MongoClient
 from flask import request
 import gameService
+import datetime
 
 import json
 from bson import ObjectId
+import jwt
 
 app = Flask(__name__)
 CORS(app)
@@ -26,7 +28,7 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 
 app.config["MONGO_URI"] = "mongodb+srv://vlad123:qwerty123@tic-tac-toe-jtwsd.mongodb.net/scoreboard?retryWrites=true&w=majority"
 # app.config['MONGO_DBNAME'] = 'scoreboard'
-# app.config['SECRET_KEY'] = 'secret_key'
+app.config['SECRET_KEY'] = 'hero'
 
 
 ###
@@ -38,12 +40,25 @@ def home():
     """Render website's home page."""
     return '<h1> Deployed </h1>'
 
+@app.route("/login")
+def login():
+    userName = request.args.get('userName')
+    token = encode_auth_token(userName)
+    return jsonify({"token": token})
+
+@app.route("/checkLogin")
+def checkLogin():
+    bearer = request.headers['Authorization']
+    userId = get_user_name(bearer)
+    return userId
+
 # returns created instance
 @app.route("/create-score", methods=["POST"])
 def createScore():
-    userName = request.args.get('userName')
+    bearer = request.headers['Authorization']
+    userId = get_user_name(bearer)
     id = ObjectId()
-    mongo.db.scoreboard.insert({"_id": id, "userName": userName, "winCount": 1})
+    mongo.db.scoreboard.insert({"_id": id, "userName": userId, "winCount": 1})
     output = []
     for s in mongo.db.scoreboard.find({"_id": id}):
         output.append({'userName': s['userName'], 'winCount': s['winCount'], "_id": str(id)})
@@ -107,7 +122,9 @@ def handle_message(data):
 
 @socketio.on('json')
 def handle_json(json):
-    print('received json: ' + str(json))
+    print json['token']
+    userName = decode_auth_token(json['token'])
+    print userName
     result = gameService.checkStepAvailable(json)
     send(result)
 
@@ -123,6 +140,45 @@ class JSONEncoder(json.JSONEncoder):
         if isinstance(o, ObjectId):
             return str(o)
         return json.JSONEncoder.default(self, o)
+
+def encode_auth_token(user_id):
+    """
+    Generates the Auth Token
+    :return: string
+    """
+    try:
+        payload = {
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1),
+            'iat': datetime.datetime.utcnow(),
+            'sub': user_id
+        }
+        return jwt.encode(
+            payload,
+            app.config.get('SECRET_KEY'),
+            algorithm='HS256'
+        )
+    except Exception as e:
+        return e
+
+def decode_auth_token(auth_token):
+    """
+    Decodes the auth token
+    :param auth_token:
+    :return: integer|string
+    """
+    try:
+        payload = jwt.decode(auth_token, app.config.get('SECRET_KEY'))
+        return payload['sub']
+    except jwt.ExpiredSignatureError:
+        return 'Signature expired. Please log in again.'
+    except jwt.InvalidTokenError:
+        return 'Invalid token. Please log in again.'
+
+
+def get_user_name(bearer):
+    if bearer:
+        token = bearer.split("Bearer ")[1]
+        return decode_auth_token(token)
 
 if __name__ == '__main__':
     socketio.run(app, cors_allowed_origins="*")
