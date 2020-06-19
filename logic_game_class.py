@@ -5,6 +5,7 @@ class Game:
         self.field_of_play = [[0, 0, 0],
                               [0, 0, 0],
                               [0, 0, 0]]
+        self.number_of_moves = 0
 
     def vivod(self):
         print(self.field_of_play)
@@ -24,6 +25,7 @@ class Game:
             return "No one won"
     def exit_game(self):
         print("let's start again")
+        self.number_of_moves = 0
         self.field_of_play = [[0, 0, 0],
                               [0, 0, 0],
                               [0, 0, 0]]
