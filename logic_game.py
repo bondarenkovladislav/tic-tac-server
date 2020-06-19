@@ -17,7 +17,8 @@ def enter_coordinates(name, x_coordinate, y_coordinate):
         print("Error, another player is walking")
         return("Error, another player is walking")
     else:
-        fill_field(name, x_coordinate, y_coordinate)
+        fill_field(name, x_coordinate, y_coordinate) # эту строку вообще удалить, она для теста
+        #!!! Нужно вызвать метод fill_field(name, x_coordinate, y_coordinate), если пришел ответ ""ОК"""
         return ("ОК")
 
 
@@ -70,12 +71,13 @@ def process_command(command):
     if (command == '-1'):
         print()
     elif (command == '2'):
-        enter_coordinates(input("Enter user's name: "), int(input("Enter x: ")), int(input("Enter y: ")))
+        enter_coordinates(input("Enter user's name: "), int(input("Enter x: ")), int(input("Enter y: ")))# в этот метод передать имя и координаты хода игроков
+
     elif (command == '3'):
         game_s.vivod()
     return
 
-game_s = Game(input("Enter user number one: "), input("Enter user number two: "))
+game_s = Game(input("Enter user number one: "), input("Enter user number two: ")) # сюда передать имена, вместо ввода из консоли
 
 user_comand = '-2'
 while user_comand != '-1':
