@@ -22,9 +22,11 @@ import json
 from bson import ObjectId
 import jwt
 
+users = {}
+
 app = Flask(__name__)
 CORS(app)
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app, cors_allowed_origins="*", ping_timeout=5, ping_interval=2)
 
 app.config["MONGO_URI"] = "mongodb+srv://vlad123:qwerty123@tic-tac-toe-jtwsd.mongodb.net/scoreboard?retryWrites=true&w=majority"
 # app.config['MONGO_DBNAME'] = 'scoreboard'
@@ -122,15 +124,44 @@ def handle_message(data):
 
 @socketio.on('json')
 def handle_json(json):
-    print json['token']
+    # print json['token']
     userName = decode_auth_token(json['token'])
-    print userName
-    result = gameService.checkStepAvailable(json)
-    send(result)
+    status = gameService.join(userName)
+    print (status)
+    if(status == 'ready'):
+        for i in range(len(users)):
+            # print users[i]
+            print(users[i])
+            send({"status": "game"}, room=users[i])
+    send({"status": status})
 
 @socketio.on('connect')
 def test_connect():
-    send('Connected from server')
+    sid = request.sid
+    token = request.query_string.split('token=')[1]
+    if(token and (not users.get(token)) and sid):
+        if (len(users) == 1):
+            users[token] = request.sid
+            for key in users:
+                send({"joinStatus": "game"}, room=users[key])
+            return
+        if (len(users) > 2):
+            send({"joinStatus": "full"})
+        users[token] = request.sid
+
+        send({"joinStatus": "connected"})
+        return
+    send({"joinStatus": "error"})
+
+@socketio.on('disconnect')
+def test_disconnect():
+    for key in users:
+        if(users[key] == request.sid):
+            del users[key]
+            for key in users:
+                send({"joinStatus": "relogin"}, room=users[key])
+            return
+
 
 
 mongo = PyMongo(app)

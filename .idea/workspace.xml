@@ -27,7 +27,7 @@
     <list default="true" id="b793c6e3-9691-4b2c-b086-9bdfe5195c69" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameService.py" beforeDir="false" afterPath="$PROJECT_DIR$/gameService.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +88,11 @@
       <workItem from="1591017612003" duration="5385000" />
       <workItem from="1591119188921" duration="3671000" />
       <workItem from="1591191868044" duration="1734000" />
-      <workItem from="1591275101934" duration="2402000" />
+      <workItem from="1591275101934" duration="3240000" />
+      <workItem from="1592156999010" duration="320000" />
+      <workItem from="1592415413727" duration="196000" />
+      <workItem from="1592488639664" duration="2465000" />
+      <workItem from="1592680622301" duration="2665000" />
     </task>
     <servers />
   </component>
@@ -130,6 +134,10 @@
     </state>
     <state x="200" y="171" width="1720" height="1000" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-332.-1057.2560.1057/0.0.1920.1200@0.0.1920.1200" timestamp="1591017586089" />
     <state x="592" y="171" width="1720" height="1000" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-332.-1080.2560.1080/0.0.1920.1200@0.0.1920.1200" timestamp="1591017402779" />
+    <state x="746" y="517" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592502584406">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="746" y="517" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-332.-1080.2560.1080/0.0.1920.1200@0.0.1920.1200" timestamp="1592502584406" />
     <state x="659" y="339" width="602" height="522" key="find.popup" timestamp="1590335927062">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
