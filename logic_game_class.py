@@ -10,12 +10,10 @@ class Game:
         self.mongo = mongo_client
 
     def setFirstUser(self, user, name):
-        print name
         self.user_1 = user
         self.user_1_name = name
 
     def setSecondUser(self, user, name):
-        print name
         self.user_2 = user
         self.user_2_name = name
 
