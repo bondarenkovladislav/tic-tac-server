@@ -137,24 +137,36 @@ def handle_json(json):
 
 @socketio.on('connect')
 def test_connect():
+    print 'connect'
     sid = request.sid
-    token = request.query_string.split('token=')[1]
-    if(token and (not users.get(token)) and sid):
-        if (len(users) == 1):
-            users[token] = request.sid
-            for key in users:
-                send({"joinStatus": "game"}, room=users[key])
-            return
-        if (len(users) > 2):
-            send({"joinStatus": "full"})
-        users[token] = request.sid
+    token = request.args.get('token')
+    if(token):
+        if((not users.get(token)) and sid):
+            if (len(users) == 1):
+                users[token] = sid
+                for key in users:
+                    send({"joinStatus": "game"}, room=users[key])
+                return
+            if (len(users) > 2):
+                send({"joinStatus": "full"})
+            users[token] = sid
 
-        send({"joinStatus": "connected"})
-        return
+            send({"joinStatus": "connected"})
+            return
+        else:
+            existedUser = users.get(token)
+            print 'exist'
+            if existedUser:
+                users.pop(token)
+                users[token] = sid
+                # send actual field there
+                send({"joinStatus": "updateSession"})
+                return
     send({"joinStatus": "error"})
 
 @socketio.on('disconnect')
 def test_disconnect():
+    print 'disconnect'
     for key in users:
         if(users[key] == request.sid):
             del users[key]
