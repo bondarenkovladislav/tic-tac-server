@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 import sys
 from logic_game_class import Game
 
-def enter_coordinates(name, x_coordinate, y_coordinate):
-    """Проверяем пришедшие координаты"""
+def enter_coordinates(game_s, name, x_coordinate, y_coordinate):
+    # """Проверяем пришедшие координаты"""
     if ((x_coordinate > 2 or x_coordinate < 0) or (y_coordinate >2 and y_coordinate < 0)):
         print("Error, the coordinate is already occupied")
         return("Error, the coordinate is already occupied")
@@ -17,12 +18,12 @@ def enter_coordinates(name, x_coordinate, y_coordinate):
         print("Error, another player is walking")
         return("Error, another player is walking")
     else:
-        fill_field(name, x_coordinate, y_coordinate) # эту строку вообще удалить, она для теста
+        # fill_field(name, x_coordinate, y_coordinate) # эту строку вообще удалить, она для теста
         #!!! Нужно вызвать метод fill_field(name, x_coordinate, y_coordinate), если пришел ответ ""ОК"""
         return ("ОК")
 
 
-def fill_field(name, x_coordinate, y_coordinate):
+def fill_field(game_s, name, x_coordinate, y_coordinate):
     """заводим координаты в массив игрового поля"""
     if (name == game_s.user_1):
         game_s.field_of_play[x_coordinate][y_coordinate] = 1
@@ -33,7 +34,7 @@ def fill_field(name, x_coordinate, y_coordinate):
         game_s.number_of_moves += 1
         result_game()
 
-def result_game():
+def result_game(game_s):
     field = game_s.field_of_play
     flag = 0
     i = 0
@@ -66,20 +67,22 @@ def result_game():
     elif (field[2][0] == field[1][1] == field[0][2]):
         if(field[2][0]!=0): game_s.victory(field[2][0])
 
-def process_command(command):
-    """Выполняет действие, в зависимости от выбранной команды"""
-    if (command == '-1'):
-        print()
-    elif (command == '2'):
-        enter_coordinates(input("Enter user's name: "), int(input("Enter x: ")), int(input("Enter y: ")))# в этот метод передать имя и координаты хода игроков
+# def process_command(game_s, command):
+#     """Выполняет действие, в зависимости от выбранной команды"""
+#     if (command == '-1'):
+#         print()
+#     elif (command == '2'):
+#         enter_coordinates(input("Enter user's name: "), int(input("Enter x: ")), int(input("Enter y: ")))# в этот метод передать имя и координаты хода игроков
+#
+#     elif (command == '3'):
+#         game_s.vivod()
+#     return
 
-    elif (command == '3'):
-        game_s.vivod()
-    return
-
-game_s = Game(input("Enter user number one: "), input("Enter user number two: ")) # сюда передать имена, вместо ввода из консоли
-
-user_comand = '-2'
-while user_comand != '-1':
-    user_comand = input("Выберите действие (2-ввести новые координаты) (3-посмотреть разультат заполнения поля) (-1-выйти): ")
-    process_command(user_comand)
+# def start():
+def startGame(user1, user2):
+    return Game(user1,
+                  user2)  # сюда передать имена, вместо ввода из консоли
+# user_comand = '-2'
+# while user_comand != '-1':
+#     user_comand = input("Выберите действие (2-ввести новые координаты) (3-посмотреть разультат заполнения поля) (-1-выйти): ")
+#     process_command(user_comand)

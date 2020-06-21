@@ -1,11 +1,15 @@
 class Game:
-    def __init__(self,user_1, user_2):
-        self.user_1 = user_1
-        self.user_2 = user_2
+    def __init__(self):
         self.field_of_play = [[0, 0, 0],
                               [0, 0, 0],
                               [0, 0, 0]]
         self.number_of_moves = 0
+
+    def setFirstUser(self, user):
+        self.user_1 = user
+
+    def setSecondUser(self, user):
+        self.user_2 = user
 
     def vivod(self):
         print(self.field_of_play)

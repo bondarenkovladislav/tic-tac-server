@@ -21,8 +21,11 @@ import datetime
 import json
 from bson import ObjectId
 import jwt
+from logic_game_class import Game
+from logic_game import startGame
 
 users = {}
+game = Game()
 
 app = Flask(__name__)
 CORS(app)
@@ -122,6 +125,12 @@ def page_not_found(error):
 def handle_message(data):
     print('received message: ', data)
 
+@socketio.on('step')
+def handle_step(json):
+    sid = request.sid
+    token = request.args.get('token')
+    send({"step": game.field_of_play, "user1": game.user_1})
+
 @socketio.on('json')
 def handle_json(json):
     # print json['token']
@@ -144,6 +153,9 @@ def test_connect():
         if((not users.get(token)) and sid):
             if (len(users) == 1):
                 users[token] = sid
+                listUsers = list(users)
+                game.setFirstUser(listUsers[0])
+                game.setSecondUser(listUsers[1])
                 for key in users:
                     send({"joinStatus": "game"}, room=users[key])
                 return
