@@ -6,21 +6,23 @@ def enter_coordinates(game_s, name, x_coordinate, y_coordinate):
     # """Проверяем пришедшие координаты"""
     if ((x_coordinate > 2 or x_coordinate < 0) or (y_coordinate >2 and y_coordinate < 0)):
         print("Error, the coordinate is already occupied")
-        return 'filled'
+        return {"status":'filled', "result": None}
     elif (name != game_s.user_1 and name != game_s.user_2):
         print("Error, the user is not found")
-        return 'user_not_found'
+        return {"status": 'user_not_found', "result": None}
     elif (game_s.field_of_play[x_coordinate][y_coordinate] != 0):
         print("Error, the coordinate is already occupied")
-        return 'filled'
+        return {"status": 'filled', "result": None}
     elif (((game_s.number_of_moves % 2 == 0) and (name == game_s.user_2)) or
           ((game_s.number_of_moves % 2 != 0) and (name == game_s.user_1))):
         print("Error, another player is walking")
-        return 'wrong_order'
+        return {"status": 'wrong_order', "result": None}
     else:
-        fill_field(game_s, name, x_coordinate, y_coordinate) # эту строку вообще удалить, она для теста
+        victory = fill_field(game_s, name, x_coordinate, y_coordinate) # эту строку вообще удалить, она для теста
+        if victory != None:
+            return {"status": 'victory', "winner": victory}
         #!!! Нужно вызвать метод fill_field(name, x_coordinate, y_coordinate), если пришел ответ ""ОК"""
-        return ("OK")
+        return {"status": 'OK', "result": None}
 
 
 def fill_field(game_s, name, x_coordinate, y_coordinate):
@@ -28,11 +30,11 @@ def fill_field(game_s, name, x_coordinate, y_coordinate):
     if (name == game_s.user_1):
         game_s.field_of_play[x_coordinate][y_coordinate] = 1
         game_s.number_of_moves += 1
-        result_game(game_s)
+        return result_game(game_s)
     elif (name == game_s.user_2):
         game_s.field_of_play[x_coordinate][y_coordinate] = 2
         game_s.number_of_moves += 1
-        result_game(game_s)
+        return result_game(game_s)
 
 def result_game(game_s):
     field = game_s.field_of_play
@@ -46,26 +48,27 @@ def result_game(game_s):
             j += 1
         i += 1
     if (flag == 0):
-        game_s.victory(3)
+        return game_s.victory(3)
     #Сравниваем по строкам
-    if (field[0][0] == field[0][1] == field[0][2]):
-       if(field[0][0]!=0):  game_s.victory(field[0][0])
-    elif (field[1][0] == field[1][1] == field[1][2]):
-        if (field[1][0] != 0):  game_s.victory(field[1][0])
-    elif (field[2][0] == field[2][1] == field[2][2]):
-        if(field[2][0]!=0): game_s.victory(field[2][0])
+    if (field[0][0] != 0 and field[0][0] == field[0][1] == field[0][2]):
+        return game_s.victory(field[0][0])
+    elif (field[1][0] != 0 and field[1][0] == field[1][1] == field[1][2]):
+        return game_s.victory(field[1][0])
+    elif (field[2][0] != 0 and field[2][0] == field[2][1] == field[2][2]):
+        return game_s.victory(field[2][0])
     #Сравниваем по столбцам
-    elif (field[0][0] == field[1][0] == field[2][0]):
-        if(field[0][0]!=0): game_s.victory(field[0][0])
-    elif (field[0][1] == field[1][1] == field[2][1]):
-        if(field[0][1]!=0): game_s.victory(field[0][1])
-    elif (field[0][2] == field[1][2] == field[2][2]):
-        if (field[0][2] != 0): game_s.victory(field[0][2])
+    elif (field[0][0] != 0 and field[0][0] == field[1][0] == field[2][0]):
+        return game_s.victory(field[0][0])
+    elif (field[0][1] != 0 and field[0][1] == field[1][1] == field[2][1]):
+        return game_s.victory(field[0][1])
+    elif (field[0][2] != 0 and field[0][2] == field[1][2] == field[2][2]):
+        return game_s.victory(field[0][2])
     #Сравниваем диагонали
-    elif (field[0][0] == field[1][1] == field[2][2]):
-        if(field[0][0]!=0):game_s.victory(field[0][0])
-    elif (field[2][0] == field[1][1] == field[0][2]):
-        if(field[2][0]!=0): game_s.victory(field[2][0])
+    elif (field[0][0] and field[0][0] == field[1][1] == field[2][2]):
+        return game_s.victory(field[0][0])
+    elif (field[2][0] and field[2][0] == field[1][1] == field[0][2]):
+        return game_s.victory(field[2][0])
+    return None
 
 # def process_command(game_s, command):
 #     """Выполняет действие, в зависимости от выбранной команды"""

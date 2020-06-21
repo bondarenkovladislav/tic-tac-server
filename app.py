@@ -29,6 +29,7 @@ log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
 users = {}
+restartApproves = {}
 game = Game()
 
 app = Flask(__name__)
@@ -135,15 +136,30 @@ def handle_step(json):
     token = request.args.get('token')
     coords = json.get('coords')
     if(coords and len(coords)>1):
-        status = enter_coordinates(game, token, coords[0], coords[1])
-        if(status == "OK"):
+        result = enter_coordinates(game, token, coords[0], coords[1])
+        if(result.get('status') == "OK"):
             for key in users:
-                emit('step', {"status": status, "field": game.field_of_play}, room=users[key])
+                emit('step', {"status": 'OK', "field": game.field_of_play, "winner": game.winner}, room=users[key])
+            return
+        elif result.get('status') == 'victory':
+            print 'emit'
+            for key in users:
+                emit('victory', {"winner": result.get('winner'), "field": game.field_of_play}, room=users[key])
             return
         else:
-            emit('step', {"status": status, "field": game.field_of_play}, room=sid)
+            emit('step', {"status": result.get('status'), "field": game.field_of_play, "winner": game.winner}, room=sid)
             return
     send('data error')
+
+@socketio.on('restart')
+def handle_restart():
+    token = request.args.get('token')
+    restartApproves[token] = True
+    if(len(list(restartApproves)) > 1):
+        game.exit_game()
+        for key in users:
+            emit('restart', {"status": 'OK', "field": game.field_of_play, "winner": game.winner}, room=users[key])
+        restartApproves.clear()
 
 @socketio.on('json')
 def handle_json(json):
@@ -169,7 +185,7 @@ def test_connect():
                 game.setFirstUser(listUsers[0])
                 game.setSecondUser(listUsers[1])
                 for key in users:
-                    send({"joinStatus": "game", "field": game.field_of_play}, room=users[key])
+                    send({"joinStatus": "game", "field": game.field_of_play, "winner": game.winner}, room=users[key])
                 return
             if (len(users) > 2):
                 send({"joinStatus": "full"})
@@ -184,7 +200,7 @@ def test_connect():
                 users.pop(token)
                 users[token] = sid
                 # send actual field there
-                send({"joinStatus": "updateSession", "field": game.field_of_play})
+                send({"joinStatus": "updateSession", "field": game.field_of_play, "winner": game.winner})
                 return
     send({"joinStatus": "error"})
 
