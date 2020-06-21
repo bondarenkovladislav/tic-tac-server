@@ -184,9 +184,9 @@ def test_connect():
             if (len(users) == 1):
                 users[token] = sid
                 listUsers = list(users)
-                print(users.keys())
-                game.setFirstUser(listUsers[0], decode_auth_token(users.keys()[0].decode('utf-8')))
-                game.setSecondUser(listUsers[1], decode_auth_token(users.keys()[1].decode('utf-8')))
+                print(list(users.keys()))
+                game.setFirstUser(listUsers[0], decode_auth_token(list(users.keys())[0].decode('utf-8')))
+                game.setSecondUser(listUsers[1], decode_auth_token(list(users.keys())[1].decode('utf-8')))
                 for key in users:
                     send({"joinStatus": "game", "field": game.field_of_play, "winner": game.winner}, room=users[key])
                 return

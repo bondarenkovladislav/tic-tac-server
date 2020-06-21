@@ -24,7 +24,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b793c6e3-9691-4b2c-b086-9bdfe5195c69" name="Default Changelist" comment="Revert &quot;proc&quot;&#10;&#10;This reverts commit 65ebb215" />
+    <list default="true" id="b793c6e3-9691-4b2c-b086-9bdfe5195c69" name="Default Changelist" comment="Revert &quot;proc&quot;&#10;&#10;This reverts commit 65ebb215">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,7 +97,7 @@
       <workItem from="1592415413727" duration="196000" />
       <workItem from="1592488639664" duration="2465000" />
       <workItem from="1592680622301" duration="3230000" />
-      <workItem from="1592727859771" duration="15181000" />
+      <workItem from="1592727859771" duration="15547000" />
     </task>
     <servers />
   </component>
