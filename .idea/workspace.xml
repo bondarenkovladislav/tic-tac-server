@@ -25,7 +25,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b793c6e3-9691-4b2c-b086-9bdfe5195c69" name="Default Changelist" comment="Revert &quot;proc&quot;&#10;&#10;This reverts commit 65ebb215">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic_game_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/logic_game_class.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +98,7 @@
       <workItem from="1592415413727" duration="196000" />
       <workItem from="1592488639664" duration="2465000" />
       <workItem from="1592680622301" duration="3230000" />
-      <workItem from="1592727859771" duration="12387000" />
+      <workItem from="1592727859771" duration="14594000" />
     </task>
     <servers />
   </component>
@@ -138,19 +140,20 @@
     </state>
     <state x="200" y="171" width="1720" height="1000" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-332.-1057.2560.1057/0.0.1920.1200@0.0.1920.1200" timestamp="1591017586089" />
     <state x="592" y="171" width="1720" height="1000" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-332.-1080.2560.1080/0.0.1920.1200@0.0.1920.1200" timestamp="1591017402779" />
-    <state x="746" y="517" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592729454011">
+    <state x="746" y="517" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592765255687">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="746" y="517" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-332.-1080.2560.1080/0.0.1920.1200@0.0.1920.1200" timestamp="1592502584406" />
-    <state x="746" y="517" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1200@0.0.1920.1200" timestamp="1592729454011" />
-    <state x="659" y="339" width="602" height="522" key="find.popup" timestamp="1592736369048">
+    <state x="746" y="517" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1200@0.0.1920.1200" timestamp="1592765255687" />
+    <state x="659" y="339" width="602" height="522" key="find.popup" timestamp="1592765833615">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="659" y="339" width="602" height="522" key="find.popup/-332.-1080.2560.1080/0.0.1920.1200@0.0.1920.1200" timestamp="1590335927062" />
-    <state x="659" y="339" width="602" height="522" key="find.popup/0.0.1920.1200@0.0.1920.1200" timestamp="1592736369048" />
-    <state x="625" y="271" width="670" height="676" key="search.everywhere.popup" timestamp="1591121037515">
+    <state x="659" y="339" width="602" height="522" key="find.popup/0.0.1920.1200@0.0.1920.1200" timestamp="1592765833615" />
+    <state x="625" y="271" width="670" height="676" key="search.everywhere.popup" timestamp="1592765399183">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="625" y="271" width="670" height="676" key="search.everywhere.popup/-332.-1080.2560.1080/0.0.1920.1200@0.0.1920.1200" timestamp="1591121037515" />
+    <state x="625" y="271" width="670" height="676" key="search.everywhere.popup/0.0.1920.1200@0.0.1920.1200" timestamp="1592765399183" />
   </component>
 </project>

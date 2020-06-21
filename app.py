@@ -30,7 +30,6 @@ log.setLevel(logging.ERROR)
 
 users = {}
 restartApproves = {}
-game = Game()
 
 app = Flask(__name__)
 CORS(app)
@@ -40,6 +39,8 @@ app.config["MONGO_URI"] = "mongodb+srv://vlad123:qwerty123@tic-tac-toe-jtwsd.mon
 # app.config['MONGO_DBNAME'] = 'scoreboard'
 app.config['SECRET_KEY'] = 'hero'
 
+mongo = PyMongo(app)
+game = Game(mongo_client=mongo)
 
 ###
 # Routing for your application.
@@ -182,8 +183,8 @@ def test_connect():
             if (len(users) == 1):
                 users[token] = sid
                 listUsers = list(users)
-                game.setFirstUser(listUsers[0])
-                game.setSecondUser(listUsers[1])
+                game.setFirstUser(listUsers[0], decode_auth_token(users.keys()[0]))
+                game.setSecondUser(listUsers[1], decode_auth_token(users.keys()[1]))
                 for key in users:
                     send({"joinStatus": "game", "field": game.field_of_play, "winner": game.winner}, room=users[key])
                 return
@@ -213,8 +214,6 @@ def test_disconnect():
             return
 
 
-
-mongo = PyMongo(app)
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, o):
