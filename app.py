@@ -55,6 +55,7 @@ def home():
 def login():
     userName = request.args.get('userName')
     token = encode_auth_token(userName)
+    print (token)
     return jsonify({"token": token})
 
 @app.route("/checkLogin")
