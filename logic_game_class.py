@@ -1,10 +1,11 @@
 class Game:
-    def __init__(self):
+    def __init__(self,mongo):
         self.field_of_play = [[0, 0, 0],
                               [0, 0, 0],
                               [0, 0, 0]]
         self.number_of_moves = 0
         self.winner = 0
+        self.mongo = mongo
 
     def setFirstUser(self, user):
         self.user_1 = user
@@ -20,11 +21,13 @@ class Game:
             print("Victory ", self.user_1)
             # self.exit_game()
             self.winner = 1
+            self.mongo.db.scoreboard.insert({"_id": 1, "userName": self.user_1, "winCount": 1})
             return 1
         elif (field == 2):
             print("Victory ", self.user_2)
             # self.exit_game()
             self.winner = 2
+            self.mongo.db.scoreboard.insert({"_id": 2, "userName": self.user_2, "winCount": 1})
             return 2
         elif (field == 3):
             print("No one won")
