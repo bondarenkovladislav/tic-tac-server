@@ -16,8 +16,6 @@ class Game:
         print(self.field_of_play)
 
     def victory(self,field):
-        print 'victory'
-        print field
         if (field == 1):
             print("Victory ", self.user_1)
             # self.exit_game()
