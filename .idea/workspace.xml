@@ -28,7 +28,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/logic_game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic_game_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/logic_game_class.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +98,7 @@
       <workItem from="1592415413727" duration="196000" />
       <workItem from="1592488639664" duration="2465000" />
       <workItem from="1592680622301" duration="3230000" />
-      <workItem from="1592727859771" duration="3667000" />
+      <workItem from="1592727859771" duration="6226000" />
     </task>
     <servers />
   </component>

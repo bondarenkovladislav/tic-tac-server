@@ -6,21 +6,21 @@ def enter_coordinates(game_s, name, x_coordinate, y_coordinate):
     # """Проверяем пришедшие координаты"""
     if ((x_coordinate > 2 or x_coordinate < 0) or (y_coordinate >2 and y_coordinate < 0)):
         print("Error, the coordinate is already occupied")
-        return("Error, the coordinate is already occupied")
+        return 'filled'
     elif (name != game_s.user_1 and name != game_s.user_2):
         print("Error, the user is not found")
-        return("Error, the user is not found")
+        return 'user_not_found'
     elif (game_s.field_of_play[x_coordinate][y_coordinate] != 0):
         print("Error, the coordinate is already occupied")
-        return("Error, the coordinate is already occupied")
+        return 'filled'
     elif (((game_s.number_of_moves % 2 == 0) and (name == game_s.user_2)) or
           ((game_s.number_of_moves % 2 != 0) and (name == game_s.user_1))):
         print("Error, another player is walking")
-        return("Error, another player is walking")
+        return 'wrong_order'
     else:
-        # fill_field(name, x_coordinate, y_coordinate) # эту строку вообще удалить, она для теста
+        fill_field(game_s, name, x_coordinate, y_coordinate) # эту строку вообще удалить, она для теста
         #!!! Нужно вызвать метод fill_field(name, x_coordinate, y_coordinate), если пришел ответ ""ОК"""
-        return ("ОК")
+        return ("OK")
 
 
 def fill_field(game_s, name, x_coordinate, y_coordinate):
@@ -28,11 +28,11 @@ def fill_field(game_s, name, x_coordinate, y_coordinate):
     if (name == game_s.user_1):
         game_s.field_of_play[x_coordinate][y_coordinate] = 1
         game_s.number_of_moves += 1
-        result_game()
+        result_game(game_s)
     elif (name == game_s.user_2):
         game_s.field_of_play[x_coordinate][y_coordinate] = 2
         game_s.number_of_moves += 1
-        result_game()
+        result_game(game_s)
 
 def result_game(game_s):
     field = game_s.field_of_play

@@ -22,7 +22,11 @@ import json
 from bson import ObjectId
 import jwt
 from logic_game_class import Game
-from logic_game import startGame
+from logic_game import *
+
+import logging
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 users = {}
 game = Game()
@@ -129,11 +133,20 @@ def handle_message(data):
 def handle_step(json):
     sid = request.sid
     token = request.args.get('token')
-    send({"step": game.field_of_play, "user1": game.user_1})
+    coords = json.get('coords')
+    if(coords and len(coords)>1):
+        status = enter_coordinates(game, token, coords[0], coords[1])
+        if(status == "OK"):
+            for key in users:
+                emit('step', {"status": status, "field": game.field_of_play}, room=users[key])
+            return
+        else:
+            emit('step', {"status": status, "field": game.field_of_play}, room=sid)
+            return
+    send('data error')
 
 @socketio.on('json')
 def handle_json(json):
-    # print json['token']
     userName = decode_auth_token(json['token'])
     status = gameService.join(userName)
     print (status)
@@ -146,7 +159,6 @@ def handle_json(json):
 
 @socketio.on('connect')
 def test_connect():
-    print 'connect'
     sid = request.sid
     token = request.args.get('token')
     if(token):
@@ -157,7 +169,7 @@ def test_connect():
                 game.setFirstUser(listUsers[0])
                 game.setSecondUser(listUsers[1])
                 for key in users:
-                    send({"joinStatus": "game"}, room=users[key])
+                    send({"joinStatus": "game", "field": game.field_of_play}, room=users[key])
                 return
             if (len(users) > 2):
                 send({"joinStatus": "full"})
@@ -172,13 +184,12 @@ def test_connect():
                 users.pop(token)
                 users[token] = sid
                 # send actual field there
-                send({"joinStatus": "updateSession"})
+                send({"joinStatus": "updateSession", "field": game.field_of_play})
                 return
     send({"joinStatus": "error"})
 
 @socketio.on('disconnect')
 def test_disconnect():
-    print 'disconnect'
     for key in users:
         if(users[key] == request.sid):
             del users[key]
