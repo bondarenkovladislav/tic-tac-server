@@ -13,7 +13,7 @@ class Game:
         self.user_2 = user
 
     def vivod(self):
-        print(self.field_of_play)
+        print(self.field_of _play)
 
     def victory(self,field):
         print 'victory'
@@ -31,8 +31,8 @@ class Game:
         elif (field == 3):
             print("No one won")
             # self.exit_game()
-            self.winner = 0
-            return 0
+            self.winner = 3
+            return 3
     def exit_game(self):
         print("let's start again")
         self.number_of_moves = 0

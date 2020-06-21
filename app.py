@@ -137,6 +137,7 @@ def handle_step(json):
     coords = json.get('coords')
     if(coords and len(coords)>1):
         result = enter_coordinates(game, token, coords[0], coords[1])
+        result.get('status')
         if(result.get('status') == "OK"):
             for key in users:
                 emit('step', {"status": 'OK', "field": game.field_of_play, "winner": game.winner}, room=users[key])
