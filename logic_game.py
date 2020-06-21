@@ -2,23 +2,36 @@ import sys
 from logic_game_class import Game
 
 def enter_coordinates(name, x_coordinate, y_coordinate):
-    """Проверяем пришедшие координаты, и заводим их в моссив игрового поля"""
+    """Проверяем пришедшие координаты"""
     if ((x_coordinate > 2 or x_coordinate < 0) or (y_coordinate >2 and y_coordinate < 0)):
         print("Error, the coordinate is already occupied")
-        return
-    elif (game_s.field_of_play[x_coordinate][y_coordinate] != 0):
-        print("Error, the coordinate is already occupied")
-        return
+        return("Error, the coordinate is already occupied")
     elif (name != game_s.user_1 and name != game_s.user_2):
         print("Error, the user is not found")
-        return
+        return("Error, the user is not found")
+    elif (game_s.field_of_play[x_coordinate][y_coordinate] != 0):
+        print("Error, the coordinate is already occupied")
+        return("Error, the coordinate is already occupied")
+    elif (((game_s.number_of_moves % 2 == 0) and (name == game_s.user_2)) or
+          ((game_s.number_of_moves % 2 != 0) and (name == game_s.user_1))):
+        print("Error, another player is walking")
+        return("Error, another player is walking")
     else:
-        if (name == game_s.user_1):
-            game_s.field_of_play[x_coordinate][y_coordinate] = 1
-            result_game()
-        elif (name == game_s.user_2):
-            game_s.field_of_play[x_coordinate][y_coordinate] = 2
-            result_game()
+        fill_field(name, x_coordinate, y_coordinate) # эту строку вообще удалить, она для теста
+        #!!! Нужно вызвать метод fill_field(name, x_coordinate, y_coordinate), если пришел ответ ""ОК"""
+        return ("ОК")
+
+
+def fill_field(name, x_coordinate, y_coordinate):
+    """заводим координаты в массив игрового поля"""
+    if (name == game_s.user_1):
+        game_s.field_of_play[x_coordinate][y_coordinate] = 1
+        game_s.number_of_moves += 1
+        result_game()
+    elif (name == game_s.user_2):
+        game_s.field_of_play[x_coordinate][y_coordinate] = 2
+        game_s.number_of_moves += 1
+        result_game()
 
 def result_game():
     field = game_s.field_of_play
@@ -33,8 +46,7 @@ def result_game():
         i += 1
     if (flag == 0):
         game_s.victory(3)
-    #Сравниваем по строкам-1
-
+    #Сравниваем по строкам
     if (field[0][0] == field[0][1] == field[0][2]):
        if(field[0][0]!=0):  game_s.victory(field[0][0])
     elif (field[1][0] == field[1][1] == field[1][2]):
@@ -54,27 +66,20 @@ def result_game():
     elif (field[2][0] == field[1][1] == field[0][2]):
         if(field[2][0]!=0): game_s.victory(field[2][0])
 
- 
-
 def process_command(command):
     """Выполняет действие, в зависимости от выбранной команды"""
     if (command == '-1'):
         print()
-    # elif (command == '1'):
-    #     start_game(input("Enter user number one: "), input("Enter user number two: "))
     elif (command == '2'):
-        enter_coordinates(input("Enter user's name: "), int(input("Enter x: ")), int(input("Enter y: ")))
+        enter_coordinates(input("Enter user's name: "), int(input("Enter x: ")), int(input("Enter y: ")))# в этот метод передать имя и координаты хода игроков
+
     elif (command == '3'):
         game_s.vivod()
-    # elif():
-    #     print(const.ERROR_MSG, file=sys.stderr)
-    #     print()
     return
 
-
-game_s = Game(input("Enter user number one: "), input("Enter user number two: "))
+game_s = Game(input("Enter user number one: "), input("Enter user number two: ")) # сюда передать имена, вместо ввода из консоли
 
 user_comand = '-2'
 while user_comand != '-1':
-    user_comand = input("Выберите действие: ")
-    process_command(user_comand
+    user_comand = input("Выберите действие (2-ввести новые координаты) (3-посмотреть разультат заполнения поля) (-1-выйти): ")
+    process_command(user_comand)
