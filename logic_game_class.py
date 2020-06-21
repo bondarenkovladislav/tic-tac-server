@@ -49,7 +49,7 @@ class Game:
     def increaseUserScore(self, name):
         scores = self.mongo.db.scoreboard
         output = None
-        for s in scores.find({"useName": name}):
+        for s in scores.find({"userName": name}):
             output = {'userName': s['userName'], 'winCount': s['winCount'], "_id": str(s['_id'])}
             break
         if(output):
