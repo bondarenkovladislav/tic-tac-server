@@ -195,7 +195,6 @@ def test_connect():
             return
         else:
             existedUser = users.get(token)
-            print 'exist'
             if existedUser:
                 users.pop(token)
                 users[token] = sid
