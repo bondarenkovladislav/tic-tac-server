@@ -55,8 +55,8 @@ def home():
 def login():
     userName = request.args.get('userName')
     token = encode_auth_token(userName)
-    print (token)
-    return jsonify({"token": token})
+    print (token.decode('utf-8'))
+    return jsonify({"token": token.decode('utf-8')})
 
 @app.route("/checkLogin")
 def checkLogin():
