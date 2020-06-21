@@ -143,7 +143,6 @@ def handle_step(json):
                 emit('step', {"status": 'OK', "field": game.field_of_play, "winner": game.winner}, room=users[key])
             return
         elif result.get('status') == 'victory':
-            print 'emit'
             for key in users:
                 emit('victory', {"winner": result.get('winner'), "field": game.field_of_play}, room=users[key])
             return
