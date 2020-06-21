@@ -13,7 +13,7 @@ class Game:
         self.user_2 = user
 
     def vivod(self):
-        print(self.field_of _play)
+        print(self.field_of_play)
 
     def victory(self,field):
         print 'victory'
